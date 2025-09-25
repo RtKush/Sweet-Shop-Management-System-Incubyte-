@@ -49,18 +49,7 @@ const LoginPage = () => {
     }
   };
   return (
-    <FormContainer>
-      <Meta title={'Sign In'} />
-      <h1>Sign In</h1>
-      <Form onSubmit={submitHandler}>
-        <Form.Group className='mb-3' controlId='email'>
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type='email'
-            value={email}
-            placeholder='Enter email'
-            onChange={e => setEmail(e.target.value)}
-          />
+   
         </Form.Group>
         <Form.Group className='mb-3' controlId='password'>
           <Form.Label>Password</Form.Label>
