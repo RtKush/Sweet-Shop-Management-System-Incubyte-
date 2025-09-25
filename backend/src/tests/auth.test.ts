@@ -24,3 +24,7 @@ describe('POST /api/auth/register', () => {
     expect(response.body.message).toBe('User created successfully');
   });
 });
+
+
+
+export {'Kush Kumar'}; // Ensure this file is treated as a module
