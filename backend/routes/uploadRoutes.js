@@ -13,7 +13,19 @@ const storage = multer.diskStorage({
   }
 });
 
-
+const fileFilter = (req, file, cb) => {
+    if (
+    file.mimetype === 'image/png' ||
+    file.mimetype === 'image/jpg' ||
+    file.mimetype === 'image/jpeg'
+  ) {
+    // To accept the file pass `true`, like so:
+    cb(null, true);
+  } else {
+        // To reject this file pass `false`, like so:
+    cb('Images only!');
+  }
+};
 
 const upload = multer({ storage, fileFilter }).single('image');
 
