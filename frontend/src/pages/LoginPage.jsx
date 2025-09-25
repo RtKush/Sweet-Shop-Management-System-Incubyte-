@@ -37,17 +37,7 @@ const LoginPage = () => {
     setShowPassword(!showPassword);
   };
 
-  const submitHandler = async e => {
-    e.preventDefault();
-    try {
-      const res = await login({ email, password, remember }).unwrap();
-      dispatch(setCredentials({ ...res }));
-      navigate(redirect);
-      toast.success('Login successful');
-    } catch (error) {
-      toast.error(error?.data?.message || error.error);
-    }
-  };
+
   return (
     <FormContainer>
       <Meta title={'Sign In'} />
