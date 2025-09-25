@@ -27,4 +27,3 @@ describe('POST /api/auth/register', () => {
 
 
 
-export {'Kush Kumar'}; // Ensure this file is treated as a module
