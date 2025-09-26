@@ -99,6 +99,5 @@ ScreenShots.
 <img width="1344" height="677" alt="Gemini_Generated_Image_ks4gmsks4gmsks4g" src="https://github.com/user-attachments/assets/007be3ca-76f7-4a33-9fe4-788150191bce" />
 <img width="1344" height="672" alt="Gemini_Generated_Image_a56quwa56quwa56q" src="https://github.com/user-attachments/assets/484d93ec-8934-454a-9cee-4a61b63b63d4" />
 <img width="1344" height="679" alt="Gemini_Generated_Image_mfesstmfesstmfes" src="https://github.com/user-attachments/assets/693f7b54-0d42-4db4-acdd-e2a2a6f242e3" />
-<img width="1344" height="672" alt="Gemini_Generated_Image_7go6yv7go6yv7go6" src="https://github.com/user-attachments/assets/ff39ca68-f21a-4e8b-8ea2-e70642e0e595" />
 <img width="1408" height="656" alt="Gemini_Generated_Image_hm6s0hhm6s0hhm6s" src="https://github.com/user-attachments/assets/3dd3c38b-f0e0-47e4-b81e-f4ff6b5d12cd" />
 
