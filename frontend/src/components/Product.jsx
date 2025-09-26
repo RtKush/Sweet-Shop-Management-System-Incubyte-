@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { usePurchaseSweetMutation } from '../slices/productsApiSlice';
 import { Button, Card } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -10,13 +11,21 @@ const Product = ({ product }) => {
   const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [purchaseSweet, { isLoading: isPurchasing }] = usePurchaseSweetMutation();
 
+  const addToCartHandler = () => {
+    dispatch(addToCart({ ...product, qty }));
+    toast.success('Added to cart!');
+  };
 
-
-const addToCartHandler = () => {
-  dispatch(addToCart({ ...product, qty }));
-  toast.success('Added to cart!');
-};
+  const handlePurchase = async () => {
+    try {
+      await purchaseSweet({ productId: product._id }).unwrap();
+      toast.success('Purchase successful!');
+    } catch (err) {
+      toast.error(err?.data?.message || 'Purchase failed');
+    }
+  };
 
   return (
     <Card className='my-3 p-3 rounded text-center'>
@@ -51,6 +60,15 @@ const addToCartHandler = () => {
         onClick={addToCartHandler}
       >
         Add To Cart
+      </Button>
+      <Button
+        variant='primary'
+        type='button'
+        disabled={product.countInStock === 0 || isPurchasing}
+        onClick={handlePurchase}
+        className='mt-2'
+      >
+        {isPurchasing ? 'Purchasing...' : 'Purchase'}
       </Button>
     </Card>
   );

@@ -3,7 +3,7 @@ import { Table, Button, Row, Col } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { toast } from 'react-toastify';
 import { FaRupeeSign, FaTrash, FaEdit } from 'react-icons/fa';
-import { useGetProductsQuery } from '../../slices/productsApiSlice';
+import { useGetProductsQuery, useRestockSweetMutation } from '../../slices/productsApiSlice';
 import { useDeleteProductMutation } from '../../slices/productsApiSlice';
 import Loader from '../../components/Loader';
 import Paginate from '../../components/Paginate';
@@ -23,8 +23,21 @@ const ProductListPage = () => {
     skip
   });
 
-  const [deleteProduct, { isLoading: isDeleteProductLoading }] =
-    useDeleteProductMutation();
+  const [deleteProduct, { isLoading: isDeleteProductLoading }] = useDeleteProductMutation();
+  const [restockSweet, { isLoading: isRestocking }] = useRestockSweetMutation();
+  const restockHandler = async (productId) => {
+    const quantity = window.prompt('Enter quantity to restock:', '1');
+    if (!quantity || isNaN(quantity) || Number(quantity) <= 0) {
+      toast.error('Please enter a valid quantity');
+      return;
+    }
+    try {
+      const { data } = await restockSweet({ productId, quantity: Number(quantity) });
+      toast.success(data.message);
+    } catch (error) {
+      toast.error(error?.data?.message || error.error);
+    }
+  };
 
   useEffect(() => {
     if (data) {
@@ -103,6 +116,14 @@ const ProductListPage = () => {
                     onClick={() => deleteHandler(product._id)}
                   >
                     <FaTrash style={{ color: 'red' }} />
+                  </Button>
+                  <Button
+                    className='btn-sm'
+                    variant='info'
+                    onClick={() => restockHandler(product._id)}
+                    disabled={isRestocking}
+                  >
+                    Restock
                   </Button>
                 </td>
               </tr>

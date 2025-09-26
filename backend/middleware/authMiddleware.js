@@ -6,10 +6,10 @@ const protect = async (req, res, next) => {
   try {
     const token = req.cookies.jwt;
 
-    // if (!token) {
-    //   res.statusCode = 401;
-    //   throw new Error('Authentication failed: Token not provided.');
-    // }
+    if (!token) {
+      res.statusCode = 401;
+      throw new Error('Authentication failed: Token not provided.');
+    }
 
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 

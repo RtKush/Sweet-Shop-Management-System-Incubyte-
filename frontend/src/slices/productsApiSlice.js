@@ -60,6 +60,21 @@ export const productApiSlice = apiSlice.injectEndpoints({
         body: { ...reviewData }
       }),
       invalidatesTags: ['Product']
+    }),
+    purchaseSweet: builder.mutation({
+      query: ({ productId }) => ({
+        url: `${PRODUCTS_URL}/${productId}/purchase`,
+        method: 'POST'
+      }),
+      invalidatesTags: ['Product']
+    }),
+    restockSweet: builder.mutation({
+      query: ({ productId, quantity }) => ({
+        url: `${PRODUCTS_URL}/${productId}/restock`,
+        method: 'POST',
+        body: { quantity }
+      }),
+      invalidatesTags: ['Product']
     })
   })
 });
@@ -72,5 +87,7 @@ export const {
   useUploadProductImageMutation,
   useUpdateProductMutation,
   useCreateProductReviewMutation,
-  useGetTopProductsQuery
+  useGetTopProductsQuery,
+  usePurchaseSweetMutation,
+  useRestockSweetMutation
 } = productApiSlice;

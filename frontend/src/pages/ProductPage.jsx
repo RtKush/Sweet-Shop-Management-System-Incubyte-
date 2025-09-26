@@ -14,7 +14,8 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   useGetProductDetailsQuery,
-  useCreateProductReviewMutation
+  useCreateProductReviewMutation,
+  usePurchaseSweetMutation
 } from '../slices/productsApiSlice';
 import { addToCart } from '../slices/cartSlice';
 import { toast } from 'react-toastify';
@@ -44,10 +45,20 @@ const ProductPage = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [purchaseSweet, { isLoading: isPurchasing }] = usePurchaseSweetMutation();
 
 const addToCartHandler = () => {
   dispatch(addToCart({ ...product, qty }));
   toast.success('Product added to cart!');
+};
+
+const handlePurchase = async () => {
+  try {
+    await purchaseSweet({ productId: product._id }).unwrap();
+    toast.success('Purchase successful!');
+  } catch (err) {
+    toast.error(err?.data?.message || 'Purchase failed');
+  }
 };
 
   const submitHandler = async e => {
@@ -172,6 +183,15 @@ const addToCartHandler = () => {
                       onClick={addToCartHandler}
                     >
                       Add To Cart
+                    </Button>
+                    <Button
+                      className='w-100 mt-2'
+                      variant='primary'
+                      type='button'
+                      disabled={product.countInStock === 0 || isPurchasing}
+                      onClick={handlePurchase}
+                    >
+                      {isPurchasing ? 'Purchasing...' : 'Purchase'}
                     </Button>
                   </ListGroupItem>
                 </ListGroup>

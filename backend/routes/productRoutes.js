@@ -6,7 +6,9 @@ import {
   createProduct,
   updateProduct,
   createProductReview,
-  getTopProducts
+  getTopProducts,
+  purchaseSweet,
+  restockSweet
 } from '../controllers/productController.js';
 import { protect, admin } from '../middleware/authMiddleware.js';
 import validateRequest from '../middleware/validator.js';
@@ -79,6 +81,13 @@ const validator = {
       .isNumeric()
       .withMessage('Count in stock must be a number'),
     param('id').notEmpty().withMessage('Id is required').isMongoId().withMessage('Invalid Id Format')
+  ],
+  purchaseSweet: [
+    param('id').notEmpty().withMessage('Id is required').isMongoId().withMessage('Invalid Id Format')
+  ],
+  restockSweet: [
+    param('id').notEmpty().withMessage('Id is required').isMongoId().withMessage('Invalid Id Format'),
+    body('quantity').notEmpty().withMessage('Quantity is required').isNumeric().withMessage('Quantity must be a number')
   ]
 }
 
@@ -87,6 +96,8 @@ router.route('/')
   .get(validator.getProducts, validateRequest, getProducts);
 router.get('/top', getTopProducts);
 router.post('/reviews/:id', validator.createProductReview, validateRequest, protect, createProductReview);
+router.post('/:id/purchase', validator.purchaseSweet, validateRequest, protect, purchaseSweet);
+router.post('/:id/restock', validator.restockSweet, validateRequest, protect, admin, restockSweet);
 router
   .route('/:id')
   .get(validator.getProduct, validateRequest, getProduct)

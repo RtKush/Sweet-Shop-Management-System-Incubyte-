@@ -1,6 +1,59 @@
 import Product from '../models/productModel.js';
 import { deleteFile } from '../utils/file.js';
 
+// @desc     Purchase a sweet (decrease quantity)
+// @method   POST
+// @endpoint /api/sweets/:id/purchase
+// @access   Protected
+const purchaseSweet = async (req, res, next) => {
+  try {
+    const { id: productId } = req.params;
+    const product = await Product.findById(productId);
+    if (!product) {
+      res.statusCode = 404;
+      throw new Error('Product not found!');
+    }
+    if (product.countInStock <= 0) {
+      res.statusCode = 400;
+      throw new Error('Product is out of stock!');
+    }
+    product.countInStock -= 1;
+    await product.save();
+    res.status(200).json({ message: 'Purchase successful', product });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// @desc     Restock a sweet (increase quantity)
+// @method   POST
+// @endpoint /api/sweets/:id/restock
+// @access   Admin only
+const restockSweet = async (req, res, next) => {
+  try {
+    const { id: productId } = req.params;
+    const { quantity } = req.body;
+    const product = await Product.findById(productId);
+    if (!product) {
+      res.statusCode = 404;
+      throw new Error('Product not found!');
+    }
+    if (!req.user || !req.user.isAdmin) {
+      res.statusCode = 403;
+      throw new Error('Admin access required to restock!');
+    }
+    if (!quantity || quantity <= 0) {
+      res.statusCode = 400;
+      throw new Error('Restock quantity must be greater than zero!');
+    }
+    product.countInStock += quantity;
+    await product.save();
+    res.status(200).json({ message: 'Restock successful', product });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // @desc     Fetch All Products
 // @method   GET
 // @endpoint /api/v1/products?limit=2&skip=0
@@ -218,5 +271,7 @@ export {
   updateProduct,
   deleteProduct,
   createProductReview,
-  getTopProducts
+  getTopProducts,
+  purchaseSweet,
+  restockSweet
 };
