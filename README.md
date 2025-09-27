@@ -34,6 +34,16 @@ Design, build, and test a full-stack Sweet Shop Management System. This project 
 - Responsive, modern UI
 
 
+
+ScreenShots.
+
+<img width="1865" height="831" alt="Screenshot 2025-09-27 150306" src="https://github.com/user-attachments/assets/29c924a8-57bc-4651-b6da-642bb4456ddc" />
+<img width="1901" height="849" alt="Screenshot 2025-09-27 150321" src="https://github.com/user-attachments/assets/b5a8b994-b51a-4702-b61b-40e57275c32b" />
+<img width="1885" height="852" alt="Screenshot 2025-09-27 150328" src="https://github.com/user-attachments/assets/79a3e2c1-f1ae-40f7-8d1f-ff4984ccb3a4" />
+<img width="1863" height="845" alt="Screenshot 2025-09-27 150351" src="https://github.com/user-attachments/assets/ffdde8ea-18d7-41a0-8557-b679932679d6" />
+<img width="1844" height="861" alt="Screenshot 2025-09-27 150315" src="https://github.com/user-attachments/assets/49eb90d1-248a-4703-80ed-8b34db60f635" />
+
+
 ---
 
 ### Setup Instructions
@@ -93,11 +103,5 @@ AI improved productivity and reduced boilerplate time. All AI-generated code was
 
 **Note:** Plagiarism is strictly forbidden. AI assistance is encouraged, but all code must be your own work, augmented by modern tools.
 
-ScreenShots.
 
-<img width="1344" height="679" alt="Gemini_Generated_Image_jr8drhjr8drhjr8d" src="https://github.com/user-attachments/assets/7db330ba-908b-4962-8b95-292e0ab590f2" />
-<img width="1344" height="677" alt="Gemini_Generated_Image_ks4gmsks4gmsks4g" src="https://github.com/user-attachments/assets/007be3ca-76f7-4a33-9fe4-788150191bce" />
-<img width="1344" height="672" alt="Gemini_Generated_Image_a56quwa56quwa56q" src="https://github.com/user-attachments/assets/484d93ec-8934-454a-9cee-4a61b63b63d4" />
-<img width="1344" height="679" alt="Gemini_Generated_Image_mfesstmfesstmfes" src="https://github.com/user-attachments/assets/693f7b54-0d42-4db4-acdd-e2a2a6f242e3" />
-<img width="1408" height="656" alt="Gemini_Generated_Image_hm6s0hhm6s0hhm6s" src="https://github.com/user-attachments/assets/3dd3c38b-f0e0-47e4-b81e-f4ff6b5d12cd" />
 
